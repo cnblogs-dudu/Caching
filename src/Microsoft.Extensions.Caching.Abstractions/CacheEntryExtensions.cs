@@ -35,7 +35,10 @@ namespace Microsoft.Extensions.Caching.Memory
                 throw new ArgumentNullException(nameof(expirationToken));
             }
 
-            entry.ExpirationTokens.Add(expirationToken);
+            lock(entry.SyncLock)
+            {
+                entry.ExpirationTokens.Add(expirationToken);
+            }
             return entry;
         }
 

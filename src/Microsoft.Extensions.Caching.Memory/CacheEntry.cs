@@ -161,6 +161,8 @@ namespace Microsoft.Extensions.Caching.Memory
 
         internal EvictionReason EvictionReason { get; private set; }
 
+        public object SyncLock => _lock;
+
         public void Dispose()
         {
             if (!_added)
